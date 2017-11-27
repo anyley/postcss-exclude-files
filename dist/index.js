@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _postcss = require('postcss');
@@ -13,17 +17,25 @@ var _multimatch2 = _interopRequireDefault(_multimatch);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var error = function error() {
-  throw new TypeError('The postcssPlugin parameter must be function! or Array');
+  throw new TypeError('The plugins parameter must be function or object or Array');
 };
 
-var postcssExcludeFiles = _postcss2.default.plugin('postcss-exclude-files', function (_ref) {
-  var filter = _ref.filter,
+exports.default = _postcss2.default.plugin('postcss-exclude-files', function (opts) {
+  var _ref = opts || {},
+      filter = _ref.filter,
       plugins = _ref.plugins;
-  return function (root, result) {
-    if (typeof filter !== 'string' && !Array.isArray(filter)) {
-      throw new TypeError('The filter parameter must be a glob string or an array of glob strings!');
-    }
 
+  if (typeof filter !== 'string' && !Array.isArray(filter)) {
+    throw new TypeError('The filter parameter must be a glob string or an array of glob strings');
+  }
+
+  var typeOfPlugin = typeof plugins === 'undefined' ? 'undefined' : _typeof(plugins);
+
+  if (!plugins || typeOfPlugin !== 'function' && typeOfPlugin !== 'object' && !Array.isArray(plugins)) {
+    error();
+  }
+
+  return function (root, result) {
     if ((0, _multimatch2.default)(root.source.input.file, filter).length === 0) {
       if (typeof plugins === 'function') {
         return (0, _postcss2.default)([plugins]).process(root).then(function (response) {
@@ -49,11 +61,3 @@ var postcssExcludeFiles = _postcss2.default.plugin('postcss-exclude-files', func
     });
   };
 });
-
-postcssExcludeFiles.process = function (css, opts) {
-  opts = opts || { filter: '**/node_modules/**', plugins: [] };
-  var processor = (0, _postcss2.default)([postcssExcludeFiles(opts)]);
-  return processor.process(css, opts);
-};
-
-module.exports = postcssExcludeFiles;
