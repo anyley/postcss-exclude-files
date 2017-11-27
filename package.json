@@ -1,6 +1,6 @@
 {
   "name": "postcss-exclude-files",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "postcss plugin for exclude files from processing",
   "main": "./dist/index.js",
   "engines": {
