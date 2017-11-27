@@ -1,4 +1,4 @@
-# postcss-exclude-files
+# postcss-exclude-files [![Build Status](https://travis-ci.org/anyley/postcss-exclude-files.svg?branch=master)](https://travis-ci.org/anyley/postcss-exclude-files)
 
 postcss plugin for exclude files from processing
 
