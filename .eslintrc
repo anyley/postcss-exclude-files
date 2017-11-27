@@ -1,0 +1,96 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jasmine": true,
+    "mocha": true,
+    "phantomjs": true,
+    "worker": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "globals": {
+    "_": true,
+    "__dirname": true,
+    "describe": true,
+    "document": true,
+    "window": true,
+    "ENV": true,
+    "WS_URL": true,
+    "VERSION": true
+  },
+  "rules": {
+    "react/no-find-dom-node": 0,
+    "react/prop-types": 0,
+    "indent": 0,
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "no-undef": [
+      "warn"
+    ],
+    "no-var": "error",
+    "no-unused-vars": [
+      0, // "warn",
+      {
+        "args": "none",
+        "argsIgnorePattern": "^_",
+        "vars": "local"
+      }
+    ],
+    "no-console": [
+      "warn",
+      {
+        "allow": ["warn", "error", "log"]
+      }
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "mode": "minimum",
+        "beforeColon": false,
+        "afterColon": true
+      }
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "react/jsx-curly-spacing": [
+      "error",
+      "never"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "no-constant-condition": [
+      "error",
+      {
+        "checkLoops": false
+      }
+    ]
+  }
+}
