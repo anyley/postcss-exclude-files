@@ -35,11 +35,5 @@ export default postcss.plugin('postcss-exclude-files', opts => {
         error()
       }
     }
-
-    result.messages.push({
-      type:   'warning',
-      text:   `File "${root.source.input.file}" excluded`,
-      plugin: 'postcss-exclude-files'
-    })
   }
 })

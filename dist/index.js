@@ -55,11 +55,5 @@ exports.default = _postcss2.default.plugin('postcss-exclude-files', function (op
         error();
       }
     }
-
-    result.messages.push({
-      type: 'warning',
-      text: 'File "' + root.source.input.file + '" excluded',
-      plugin: 'postcss-exclude-files'
-    });
   };
 });
