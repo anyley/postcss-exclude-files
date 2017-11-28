@@ -20,11 +20,13 @@ export default postcss.plugin('postcss-exclude-files', opts => {
   }
 
   return (root, result) => {
-    if (multimatch(root.source.input.file, filter).length === 0) {
+    let path = root.source.input.file
+
+    if (multimatch(path, filter).length === 0) {
       if (typeof plugins === 'function') {
-          return postcss([plugins]).process(root).then(response =>
-            response.messages.forEach(msg => result.messages.push(msg))
-          )
+        return postcss([plugins]).process(root).then(response =>
+          response.messages.forEach(msg => result.messages.push(msg))
+        )
       } else if (Array.isArray(plugins) || typeof plugins === 'object') {
         return postcss(plugins).process(root).then(response =>
           response.messages.forEach(msg => result.messages.push(msg))

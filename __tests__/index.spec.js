@@ -2,6 +2,7 @@ import excludeFiles from '../src/'
 import postcss from 'postcss'
 import testPlugin from '../helpers/plugin'
 
+
 let css, target
 
 beforeAll(() => {
@@ -11,27 +12,21 @@ beforeAll(() => {
 
 describe('when test-plugin used without exclude files wrapper', () => {
   test('test-plugin can be function and produce prefixed css', () => {
-    const prefixed = postcss([testPlugin()]).process(css)
+    const result = postcss([testPlugin()]).process(css)
 
-    return expect(prefixed).resolves.toMatchObject({
-      css: target
-    })
+    return expect(result).resolves.toMatchObject({ css: target })
   })
 
   test('test-plugin can be initializer and produce prefixed css', () => {
-    const prefixed = postcss([testPlugin]).process(css)
+    const result = postcss([testPlugin]).process(css)
 
-    return expect(prefixed).resolves.toMatchObject({
-      css: target
-    })
+    return expect(result).resolves.toMatchObject({ css: target })
   })
 
   test('test-plugin can processing without postcss and produce prefixed css', () => {
-    const prefixed = testPlugin.process(css)
+    const result = testPlugin.process(css)
 
-    return expect(prefixed).resolves.toMatchObject({
-      css: target
-    })
+    return expect(result).resolves.toMatchObject({ css: target })
   })
 })
 
@@ -64,6 +59,7 @@ describe('when other plugins wrapped by exclude files plugin with invalud option
   })
 })
 
+
 describe('when other pligins wrapped by exclude files plugin and css pass to processing', () => {
   test('plugin can be a function', () => {
     expect.hasAssertions()
@@ -75,9 +71,7 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
       })
     ]).process(css)
 
-    return expect(result).resolves.toMatchObject({
-      css: target
-    })
+    return expect(result).resolves.toMatchObject({ css: target })
   })
 
   test('plugin can be a initializer', () => {
@@ -90,9 +84,7 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
       })
     ]).process(css)
 
-    return expect(result).resolves.toMatchObject({
-      css: target
-    })
+    return expect(result).resolves.toMatchObject({ css: target })
   })
 
   test('plugin can be a postcss bundle and initializer', () => {
@@ -107,9 +99,7 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
       })
     ]).process(css)
 
-    return expect(result).resolves.toMatchObject({
-      css: target
-    })
+    return expect(result).resolves.toMatchObject({ css: target })
   })
 
   test('plugin can be a postcss bundle and function', () => {
@@ -124,8 +114,26 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
       })
     ]).process(css)
 
-    return expect(result).resolves.toMatchObject({
-      css: target
-    })
+    return expect(result).resolves.toMatchObject({ css: target })
+  })
+})
+
+
+describe('when other pligins wrapped by exclude files plugin and css excluded from processing', () => {
+  test('wrapped plugins will not run', () => {
+    expect.hasAssertions()
+
+    const root = postcss.parse(css)
+    root.source.input.file = '/frontend/node_modules/test/styles.css'
+
+    const result = postcss([
+      excludeFiles({
+        filter:  ['**/node_modules/**'],
+        plugins: testPlugin
+      }),
+      testPlugin
+    ]).process(root)
+
+    return expect(result).resolves.toMatchObject({ css: target })
   })
 })

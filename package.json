@@ -6,6 +6,9 @@
   "engines": {
     "node": ">=4.0.0"
   },
+  "devEngines": {
+    "node": "8.x"
+  },
   "keywords": [
     "css",
     "postcss",
@@ -22,12 +25,12 @@
   "license": "MIT",
   "homepage": "https://github.com/anyley/postcss-exclude-files",
   "repository": "anyley/postcss-exclude-files",
-  "dependencies": {
+  "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-jest": "^21.2.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
     "eslint": "^4.12.0",
     "eslint-plugin-react": "^7.5.1",
     "jest": "^21.2.1",

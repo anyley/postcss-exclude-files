@@ -36,7 +36,9 @@ exports.default = _postcss2.default.plugin('postcss-exclude-files', function (op
   }
 
   return function (root, result) {
-    if ((0, _multimatch2.default)(root.source.input.file, filter).length === 0) {
+    var path = root.source.input.file;
+
+    if ((0, _multimatch2.default)(path, filter).length === 0) {
       if (typeof plugins === 'function') {
         return (0, _postcss2.default)([plugins]).process(root).then(function (response) {
           return response.messages.forEach(function (msg) {
