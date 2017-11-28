@@ -25,6 +25,10 @@
   "license": "MIT",
   "homepage": "https://github.com/anyley/postcss-exclude-files",
   "repository": "anyley/postcss-exclude-files",
+  "dependencies": {
+    "multimatch": "^2.1.0",
+    "postcss": "^6.0.14"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
@@ -34,8 +38,6 @@
     "eslint": "^4.12.0",
     "eslint-plugin-react": "^7.5.1",
     "jest": "^21.2.1",
-    "multimatch": "^2.1.0",
-    "postcss": "^6.0.14",
     "regenerator-runtime": "^0.11.0"
   },
   "scripts": {
