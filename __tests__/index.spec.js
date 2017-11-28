@@ -11,19 +11,19 @@ beforeAll(() => {
 })
 
 describe('when test-plugin used without exclude files wrapper', () => {
-  test('test-plugin can be function and produce prefixed css', () => {
+  it('test-plugin can be function and produce prefixed css', () => {
     const result = postcss([testPlugin()]).process(css)
 
     return expect(result).resolves.toMatchObject({ css: target })
   })
 
-  test('test-plugin can be initializer and produce prefixed css', () => {
+  it('test-plugin can be initializer and produce prefixed css', () => {
     const result = postcss([testPlugin]).process(css)
 
     return expect(result).resolves.toMatchObject({ css: target })
   })
 
-  test('test-plugin can processing without postcss and produce prefixed css', () => {
+  it('test-plugin can processing without postcss and produce prefixed css', () => {
     const result = testPlugin.process(css)
 
     return expect(result).resolves.toMatchObject({ css: target })
@@ -32,7 +32,7 @@ describe('when test-plugin used without exclude files wrapper', () => {
 
 
 describe('when other plugins wrapped by exclude files plugin with invalud options', () => {
-  test('filter parameter must be a glob string or an array of glob strings', () => {
+  it('filter parameter must be a glob string or an array of glob strings', () => {
     const invalidFilters = [NaN, null, undefined, 0, 1, true, false, {}]
 
     invalidFilters.forEach(filter => {
@@ -45,7 +45,7 @@ describe('when other plugins wrapped by exclude files plugin with invalud option
     })
   })
 
-  test('plugins parameter must be (function | arrray | object)', () => {
+  it('plugins parameter must be (function | arrray | object)', () => {
     const invalidPlugins = [NaN, null, undefined, 0, 1, true, false, 'bad plugin']
 
     invalidPlugins.forEach(plugins => {
@@ -61,7 +61,7 @@ describe('when other plugins wrapped by exclude files plugin with invalud option
 
 
 describe('when other pligins wrapped by exclude files plugin and css pass to processing', () => {
-  test('plugin can be a function', () => {
+  it('plugin can be a function', () => {
     expect.hasAssertions()
 
     const result = postcss([
@@ -74,7 +74,7 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
     return expect(result).resolves.toMatchObject({ css: target })
   })
 
-  test('plugin can be a initializer', () => {
+  it('plugin can be a initializer', () => {
     expect.hasAssertions()
 
     const result = postcss([
@@ -87,7 +87,7 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
     return expect(result).resolves.toMatchObject({ css: target })
   })
 
-  test('plugin can be a postcss bundle and initializer', () => {
+  it('plugin can be a postcss bundle and initializer', () => {
     expect.hasAssertions()
 
     const result = postcss([
@@ -102,7 +102,7 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
     return expect(result).resolves.toMatchObject({ css: target })
   })
 
-  test('plugin can be a postcss bundle and function', () => {
+  it('plugin can be a postcss bundle and function', () => {
     expect.hasAssertions()
 
     const result = postcss([
@@ -120,7 +120,7 @@ describe('when other pligins wrapped by exclude files plugin and css pass to pro
 
 
 describe('when other pligins wrapped by exclude files plugin and css excluded from processing', () => {
-  test('wrapped plugins will not run', () => {
+  it('wrapped plugins will not run', () => {
     expect.hasAssertions()
 
     const root = postcss.parse(css)
