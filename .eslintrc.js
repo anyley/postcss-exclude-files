@@ -1,8 +1,5 @@
-const path = require('path')
-
-
 module.exports = {
-  'globals': {
+  globals: {
     '__dirname': true,
     'process': true
   },
@@ -13,22 +10,22 @@ module.exports = {
     jest: true,
     es6: true
   },
-  'extends': [
+  extends: [
     'eslint:recommended',
     'plugin:import/errors',
     'plugin:import/warnings'
   ],
-  'parser': 'babel-eslint',
-  'parserOptions': {
+  parser: 'babel-eslint',
+  parserOptions: {
     'sourceType': 'module',
     'ecmaFeatures': {
       'jsx': true
     }
   },
-  'plugins': [
+  plugins: [
     'import'
   ],
-  'rules': {
+  rules: {
     'eqeqeq': 'error',
     'import/no-unresolved': [2, {'commonjs': true, 'amd': true}],
     'import/named': 2,
