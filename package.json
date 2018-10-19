@@ -6,9 +6,6 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "devEngines": {
-    "node": "8.x"
-  },
   "keywords": [
     "css",
     "postcss",
@@ -27,23 +24,31 @@
   "repository": "anyley/postcss-exclude-files",
   "dependencies": {
     "multimatch": "^2.1.0",
-    "postcss": "^6.0.14"
+    "postcss": "^7.0.5"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.2",
-    "babel-jest": "^21.2.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "eslint": "^4.12.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "jest": "^21.2.1"
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "eslint": "^5.7.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "flow-bin": "^0.83.0",
+    "flow-typed": "^2.5.1",
+    "jest": "^23.6.0"
   },
   "scripts": {
-    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "build": "node ./node_modules/@babel/cli/bin/babel src --out-dir dist",
     "test": "npm run eslint && jest",
     "eslint": "node node_modules/eslint/bin/eslint __tests__/*.js src/*.js helpers/*.js"
-  }
+  },
+  "browserslist": [
+    "last 2 version",
+    "ie 11"
+  ]
 }
